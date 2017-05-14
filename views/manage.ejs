@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<% include partials/header %>
+<body>
+
+<div class="jumbotron">
+	<div class="container">
+		<h1>Neuen Artikel erstellen</h1>
+		<a href="/"><< Zurück zur Übersicht</a>
+	</div>
+</div>
+
+<div class="container">
+	<% if(articles.length > 0){ %>
+
+	<% for(var article of articles) { %>
+
+	<div class="media" style="border-bottom:1px solid #eaeaea;padding-bottom:20px;padding-top:20px;">
+		<div class="media-left">
+			<img src="/uploads/<%= article.bild %>" class="media-object" style="max-width:100px;">
+		</div>
+		<div class="media-body">
+			<h4 class="media-heading"><%= article.name %></h4>
+		</div>
+		<div class="media-right">
+			<button type="button" class="btn btn-default" data-delete="<%= article.articleId %>">
+				<span class="glyphicon glyphicon-trash"></span>
+			</button>
+		</div>
+	</div>
+
+	<% } %>
+
+	<% } else { %>
+
+	<h2>Keine Artikel erstellt.</h2>
+	<a href="/newArticle">Neuen Artikel anlegen?</a>
+
+	<% } %>
+</div>
+
+<script src="/javascripts/manage.js"></script>
+
+</body>
+</html>

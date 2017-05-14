@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<% include partials/header %>
+<body>
+
+<div class="container" style="margin-top:40px;margin-bottom:40px;">
+	Eingeloggt als: <strong><%= user.firstname %> <%= user.lastname %></strong><br>
+	<a href="/newArticle" class="btn btn-default">Neuen Artikel erstellen</a>
+	<a href="/manageArticles" class="btn btn-default">Meine Artikel</a>
+	<a href="/logout" class="btn btn-danger">Logout</a>
+</div>
+<div class="container">
+
+	<% if(klamotten.length > 0){ %>
+
+	<div class="row">
+		<% for(var artikel of klamotten) { %>
+
+		<div class="col-sm-6 col-md-4 col-lg-3">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<img src="/uploads/<%= artikel.bild %>" class="img-responsive">
+				</div>
+				<div class="panel-footer">
+					<h3><%= artikel.name %></h3>
+					<em>- von <%= artikel.firstname %> <%= artikel.lastname %></em>
+				</div>
+				<table class="table table-bordered text-center">
+					<tbody>
+					<tr>
+						<td>
+							<% if(artikel.hasBeenLiked) { %>
+							<span class="glyphicon glyphicon-heart" style="color:red;"></span>
+							<% } else { %>
+							<span class="glyphicon glyphicon-heart-empty" data-like="<%= artikel.articleId %>"></span>
+							<% } %>
+							<small>(<%= artikel.likes %>)</small>
+						</td>
+						<td><a href="/article/<%= artikel.articleId %>/comments">Kommentieren</a></td>
+					</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+
+		<% } %>
+
+	</div>
+
+	<% } else { %>
+
+	<span>Noch keine Artikel vorhanden</span>
+
+	<% } %>
+</div>
+
+<script src="/javascripts/index.js"></script>
+
+</body>
+</html>

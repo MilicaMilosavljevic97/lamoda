@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<% include partials/header %>
+<body>
+
+<div class="jumbotron">
+	<div class="container">
+		<h1><%= article.name %></h1>
+		<a href="/"><< Zurück zur Übersicht</a>
+	</div>
+</div>
+
+<div class="container">
+
+	<% if(comments.length > 0){ %>
+
+	<% for(var comment of comments) { %>
+
+	<div class="media" style="border-bottom:1px solid #eaeaea;">
+		<div class="media-body">
+			<h4 class="media-heading"><%= comment.firstname %> <%= comment.lastname %></h4>
+			<small><%= comment.timestamp %></small>
+			<p><%= comment.message %></p>
+		</div>
+	</div>
+
+	<% } %>
+
+	<% } else { %>
+
+	<h2>Noch keine Kommentare vorhanden</h2>
+
+	<% } %>
+
+	<h4>Schreibe eine eigene Nachricht!</h4>
+	<form id="commentForm" action="/api/article/<%= article.articleId %>/comment" method="post">
+		<textarea class="form-control" rows="5" placeholder="Deine Nachricht" id="commentMessage"></textarea>
+		<br>
+		<button type="submit" class="btn btn-default">Kommentieren</button>
+	</form>
+</div>
+
+<script src="/javascripts/comment.js"></script>
+
+</body>
+</html>

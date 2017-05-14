@@ -1,0 +1,20 @@
+{
+  "name": "la-moda",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Milica"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/MilicaMilosavljevic97/lamoda",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
