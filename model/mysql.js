@@ -33,8 +33,28 @@ function addLike(articleId, userId, callback) {
 	});
 }
 
+function dislike(articleId, userId, callback) {
+	connection.query('DELETE FROM likes WHERE articleId = ? AND userId = ?', [articleId, userId], function (err, result) {
+		if(err){
+			console.log(err);
+			return callback(err);
+		}
+		callback(null, result);
+	});
+}
+
 function addComment(articleId, userId, message, callback) {
 	connection.query('INSERT INTO comments VALUES(null, ?, ?, ?, CURRENT_TIMESTAMP)', [articleId, userId, message], function (err, result) {
+		if(err){
+			console.log(err);
+			return callback(err);
+		}
+		callback(null, result);
+	});
+}
+
+function delcomment(commentId, callback) {
+	connection.query('DELETE FROM comments WHERE commentId = ?', commentId, function (err, result) {
 		if(err){
 			console.log(err);
 			return callback(err);
@@ -128,7 +148,9 @@ function getUserArticles(userId, callback){
 module.exports = {
 	addArticle,
 	addLike,
+	dislike,
 	addComment,
+	delcomment,
 	addUser,
 	deleteArticle,
 	getArticle,

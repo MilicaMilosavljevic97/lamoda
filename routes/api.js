@@ -1,7 +1,7 @@
 var express = require('express');
 var multer = require('multer');
 var model = require('../model/mysql');
-var path = require('path')
+var path = require('path');
 var router = express.Router();
 var upload = multer({dest:path.join(__dirname, '../public/uploads')});
 
@@ -20,7 +20,6 @@ router.post('/login', function (req, res) {
         res.status(400).send("user not found");
     });
 });
-
 router.post('/register', function (req, res) {
     var firstname = req.body.firstname;
     var lastname = req.body.lastname;
@@ -33,7 +32,7 @@ router.post('/register', function (req, res) {
         }
         res.send("Ok");
     });
-})
+});
 
 router.use(function(req, res, next){
 	if (!req.session.user) {
@@ -55,6 +54,21 @@ router.post('/article/:articleId/like', function (req, res) {
     });
 });
 
+
+
+
+router.delete('/article/:articleId/like', function (req, res) {
+    var articleId = req.params.articleId;
+
+    model.dislike(articleId, req.session.user.userId, function(err, result){
+        if(err){
+            return res.status(500).send('Internal Server Error');
+        }
+
+        return res.send("Ok");
+    });
+});
+
 router.post('/article/:articleId/comment', function (req, res) {
     var articleId = req.params.articleId;
     var message = req.body.message;
@@ -65,6 +79,18 @@ router.post('/article/:articleId/comment', function (req, res) {
         }
 
         console.log(result);
+        return res.send("Ok");
+    });
+});
+
+router.delete('/comment/:commentId', function (req, res) {
+    var commentId = req.params.commentId;
+
+    model.delcomment(commentId, function(err, result){
+        if(err){
+            return res.status(500).send('Internal Server Error');
+        }
+
         return res.send("Ok");
     });
 });

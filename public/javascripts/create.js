@@ -2,13 +2,13 @@ $(function () {
 	$('#createForm').submit(function (e) {
 		e.preventDefault();
 
-		var data = new FormData(this);
+		var data = new FormData(this); //??
 
 		$.ajax({
 			url: '/api/article/add',
 			method: 'POST',
-			processData: false,
-			contentType: false,
+			processData: false, //??
+			contentType: false, //?
 			data: data,
 			error: function () {
 				alert("Unbekannter Fehler");
@@ -19,3 +19,5 @@ $(function () {
 		});
 	});
 });
+
+// DELETE FROM comments WHERE commentId = ?

@@ -1,7 +1,8 @@
 body {
   padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url(../images/pexels-photo-47401.jpeg);
+
+  background-image: url(../images/pexels-photo-26067.jpg);
   background-size: cover;
 
   background-attachment: fixed;
@@ -12,7 +13,12 @@ body {
   margin: 0;
 }
 
+
+
 a {
   color: #00B7FF;
 }
 
+#hintergrund{
+  background-color: black;
+}
