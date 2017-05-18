@@ -10,7 +10,7 @@ $(function () {
 				alert("Unbekannter Fehler");
 			},
 			success: function () {
-				location.reload();
+			location.reload();
 				//$(that).removeClass('glyphicon-heart-empty').addClass('glyphicon-heart').css('color', 'red').removeAttr('data-like');
 			}
 		});

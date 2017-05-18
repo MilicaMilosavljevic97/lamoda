@@ -8,13 +8,13 @@ router.get('/login', function (req, res, next) {
 	}
 
 	res.render('login');
+
 });
 
 router.use(function (req, res, next) {
 	if (!req.session.user) {
 		return res.redirect('/login');
 	}
-
 	next();
 });
 
@@ -40,6 +40,7 @@ router.get('/article/:articleId/comments', function (req, res) {
 				return res.status(500).send('Internal Server Error');
 			}
 			res.render('detail', {article:article[0], comments:comments});
+			console.log("Hallo");
 		});
 	});
 });
